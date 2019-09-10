@@ -59,7 +59,7 @@ CREATE TABLE Activites(
 CREATE TABLE CorrPPC(
         IDPeriode   Int NOT NULL ,
         IDPays      Int NOT NULL ,
-        Climat      Varchar (10) NOT NULL ,
+        Climat      Varchar (50) NOT NULL ,
         Temperature Int NOT NULL
 	,CONSTRAINT CorrPPC_PK PRIMARY KEY (IDPeriode,IDPays)
 
