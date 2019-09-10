@@ -5,7 +5,8 @@
     "mois": 12,
     "budget": 500,
     "activite": "plage",
-    "climat": "méditerranéen"
+    "climat": "méditerranéen",
+    "url": "img/maroc.jpg"
     },
     "Grèce":{
       "ville": "Athenes",
@@ -13,7 +14,8 @@
       "mois": 12,
       "budget": 450,
       "activite": "tourisme",
-      "climat": "chaud"
+      "climat": "chaud",
+      "url": "img/grece.jpg"
     },
     "Angleterre":{
       "ville": "Londres",
@@ -21,7 +23,8 @@
       "mois": 12,
       "budget": 130,
       "activite": "culturelle",
-      "climat": "océanique"
+      "climat": "océanique",
+      "url": "img/angleterre.jpg"
     },
     "Canada":{
       "ville": "Toronto",
@@ -29,7 +32,8 @@
       "mois": 12,
       "budget": 300,
       "activite": "randonner",
-      "climat": "continental"
+      "climat": "continental",
+      "url": "img/canada.png"
     },
     "Egypte":{
       "ville": "Le Caire",
@@ -37,7 +41,8 @@
       "mois": 12,
       "budget": 700,
       "activite": "culturelle",
-      "climat": "chaud et sec"
+      "climat": "chaud et sec",
+      "url": "img/egypt.jpg"
     },
       "Tunisie":{
         "ville": "تونس",
@@ -45,6 +50,7 @@
         "mois": 12,
         "budget": 750,
         "active": "tourisme",
-        "climat": "méditerranéen"
+        "climat": "méditerranéen",
+        "url": "img/tunisie.jpg"
       }
   }
