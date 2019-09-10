@@ -1,0 +1,96 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: Pays
+#------------------------------------------------------------
+
+CREATE TABLE Pays(
+        IDPays Int  Auto_increment  NOT NULL ,
+        Nom    Varchar (50) NOT NULL
+	,CONSTRAINT Pays_PK PRIMARY KEY (IDPays)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Villes
+#------------------------------------------------------------
+
+CREATE TABLE Villes(
+        IDVille Int  Auto_increment  NOT NULL ,
+        Nom     Varchar (50) NOT NULL ,
+        IDPays  Int NOT NULL
+	,CONSTRAINT Villes_PK PRIMARY KEY (IDVille)
+
+	,CONSTRAINT Villes_Pays_FK FOREIGN KEY (IDPays) REFERENCES Pays(IDPays)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Periodes
+#------------------------------------------------------------
+
+CREATE TABLE Periodes(
+        IDPeriode Int  Auto_increment  NOT NULL ,
+        Mois      Int NOT NULL
+	,CONSTRAINT Periodes_PK PRIMARY KEY (IDPeriode)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Activites
+#------------------------------------------------------------
+
+CREATE TABLE Activites(
+        IDActivite   Int  Auto_increment  NOT NULL ,
+        TypeActivite Varchar (10) NOT NULL
+	,CONSTRAINT Activites_PK PRIMARY KEY (IDActivite)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: CorrPPC
+#------------------------------------------------------------
+
+CREATE TABLE CorrPPC(
+        IDPeriode   Int NOT NULL ,
+        IDPays      Int NOT NULL ,
+        Climat      Varchar (10) NOT NULL ,
+        Temperature Int NOT NULL
+	,CONSTRAINT CorrPPC_PK PRIMARY KEY (IDPeriode,IDPays)
+
+	,CONSTRAINT CorrPPC_Periodes_FK FOREIGN KEY (IDPeriode) REFERENCES Periodes(IDPeriode)
+	,CONSTRAINT CorrPPC_Pays0_FK FOREIGN KEY (IDPays) REFERENCES Pays(IDPays)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: CorrVPB
+#------------------------------------------------------------
+
+CREATE TABLE CorrVPB(
+        IDPeriode Int NOT NULL ,
+        IDVille   Int NOT NULL ,
+        Budget    Decimal (10) NOT NULL
+	,CONSTRAINT CorrVPB_PK PRIMARY KEY (IDPeriode,IDVille)
+
+	,CONSTRAINT CorrVPB_Periodes_FK FOREIGN KEY (IDPeriode) REFERENCES Periodes(IDPeriode)
+	,CONSTRAINT CorrVPB_Villes0_FK FOREIGN KEY (IDVille) REFERENCES Villes(IDVille)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: CorrVA
+#------------------------------------------------------------
+
+CREATE TABLE CorrVA(
+        IDActivite Int NOT NULL ,
+        IDVille    Int NOT NULL
+	,CONSTRAINT CorrVA_PK PRIMARY KEY (IDActivite,IDVille)
+
+	,CONSTRAINT CorrVA_Activites_FK FOREIGN KEY (IDActivite) REFERENCES Activites(IDActivite)
+	,CONSTRAINT CorrVA_Villes0_FK FOREIGN KEY (IDVille) REFERENCES Villes(IDVille)
+)ENGINE=InnoDB;
+

@@ -1,0 +1,50 @@
+{
+    "Maroc":{
+    "ville": "Rabat",
+    "temperature": 23,
+    "mois": 12,
+    "budget": 500,
+    "activite": "plage",
+    "climat": "méditerranéen"
+    },
+    "Grèce":{
+      "ville": "Athenes",
+      "temperature": 30,
+      "mois": 12,
+      "budget": 450,
+      "activite": "tourisme",
+      "climat": "chaud"
+    },
+    "Angleterre":{
+      "ville": "Londres",
+      "temperature": 16,
+      "mois": 12,
+      "budget": 130,
+      "activite": "culturelle",
+      "climat": "océanique"
+    },
+    "Canada":{
+      "ville": "Toronto",
+      "temperature": 22,
+      "mois": 12,
+      "budget": 300,
+      "activite": "randonner",
+      "climat": "continental"
+    },
+    "Egypte":{
+      "ville": "Le Caire",
+      "temperature": 30,
+      "mois": 12,
+      "budget": 700,
+      "activite": "culturelle",
+      "climat": "chaud et sec"
+    },
+      "Tunisie":{
+        "ville": "تونس",
+        "temperature": 30,
+        "mois": 12,
+        "budget": 750,
+        "active": "tourisme",
+        "climat": "méditerranéen"
+      }
+  }
