@@ -39,11 +39,28 @@
 </nav><br>
 <div class="container">
 <form>
-  <div class="form-group">
-  <select class="form-control form-control-sm">
-    <option>Small select</option>
-  </select>
+<div class="row">
+  <div class="form-group col-md-3">
+    <label for="exampleFormControlSelect1">Budget</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>Entre 0€ et 300€</option>
+      <option>Entre 300€ et 500€</option>
+      <option>Plus de 500€</option>
+    </select>
   </div>
+  <div class="form-group col-md-3">
+    <label for="exampleFormControlSelect1">Climat</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+    </select>
+  </div>
+  <div class="form-group col-md-3">
+    <label for="exampleFormControlSelect1">Activité</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+    </select>
+  </div>
+</div>
 </form>
 </div>
 </html>
