@@ -47,7 +47,7 @@ CREATE TABLE Periodes(
 
 CREATE TABLE Activites(
         IDActivite   Int  Auto_increment  NOT NULL ,
-        TypeActivite Varchar (10) NOT NULL
+        TypeActivite Varchar (50) NOT NULL
 	,CONSTRAINT Activites_PK PRIMARY KEY (IDActivite)
 )ENGINE=InnoDB;
 
