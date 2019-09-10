@@ -2,7 +2,7 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
-CREATE DATABASE TPVoyage;
+CREATE DATABASE TPVoyage CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE TPVoyage;
 
 #------------------------------------------------------------
