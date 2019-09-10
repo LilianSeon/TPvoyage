@@ -2,6 +2,8 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
+CREATE DATABASE TPVoyage;
+USE TPVoyage;
 
 #------------------------------------------------------------
 # Table: Pays
@@ -94,3 +96,20 @@ CREATE TABLE CorrVA(
 	,CONSTRAINT CorrVA_Villes0_FK FOREIGN KEY (IDVille) REFERENCES Villes(IDVille)
 )ENGINE=InnoDB;
 
+
+INSERT INTO `pays` (`IDPays`, `Nom`) VALUES (NULL, 'Maroc'), (NULL, 'Grèce'), (NULL, 'Angleterre'), (NULL, 'Canada'), (NULL, 'Egypte'), (NULL, 'Tunisie')
+
+INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Rabat', '1'), (NULL, 'Tunis', '6');
+INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Londres', '3'), (NULL, 'Birmingham', '3'), (NULL, 'Glasgow', '3'), (NULL, 'Edimbourg', '3'), (NULL, 'Liverpool', '3');
+INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Casablanca', '1'), (NULL, 'Fès', '1'), (NULL, 'Tanger', '1'), (NULL, 'Marrakech', '1');
+INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Toronto', '4'), (NULL, 'Montréal', '4'), (NULL, 'Calgary', '4'), (NULL, 'Ottawa', '4'), (NULL, 'Vancouver', '4');
+
+INSERT INTO `activites` (`IDActivite`, `TypeActivite`) VALUES (NULL, 'tourisme'), (NULL, 'culturelle'), (NULL, 'randonnées'), (NULL, 'balnéaire');
+
+INSERT INTO `periodes` (`IDPeriode`, `Mois`) VALUES (NULL, '1'), (NULL, '2'), (NULL, '3'), (NULL, '4'), (NULL, '5'), (NULL, '6'), (NULL, '7'), (NULL, '8'), (NULL, '9'), (NULL, '10'), (NULL, '11'), (NULL, '12');
+
+INSERT INTO `corrvpb` (`IDPeriode`, `IDVille`, `Budget`) VALUES ('12', '1', '500'), ('12', '9', '450'), ('12', '3', '130'), ('12', '12', '300'), ('12', '11', '500'), ('12', '2', '750');
+
+INSERT INTO `corrva` (`IDActivite`, `IDVille`) VALUES ('4', '1'), ('2', '3'), ('2', '12'), ('1', '11'), ('3', '15'), ('1', '8'), ('2', '6'), ('1', '10');
+
+INSERT INTO `corrppc` (`IDPeriode`, `IDPays`, `Climat`, `Temperature`) VALUES ('12', '1', 'chaud et sec', '23'), ('12', '3', 'océanique', '16'), ('12', '6', 'méditerranéen', '25'), ('12', '4', 'continental', '22'), ('12', '5', 'chaud et sec', '30');
