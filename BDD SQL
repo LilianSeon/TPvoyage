@@ -97,7 +97,7 @@ CREATE TABLE CorrVA(
 )ENGINE=InnoDB;
 
 
-INSERT INTO `pays` (`IDPays`, `Nom`) VALUES (NULL, 'Maroc'), (NULL, 'Grèce'), (NULL, 'Angleterre'), (NULL, 'Canada'), (NULL, 'Egypte'), (NULL, 'Tunisie')
+INSERT INTO `pays` (`IDPays`, `Nom`) VALUES (NULL, 'Maroc'), (NULL, 'Grèce'), (NULL, 'Angleterre'), (NULL, 'Canada'), (NULL, 'Egypte'), (NULL, 'Tunisie');
 
 INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Rabat', '1'), (NULL, 'Tunis', '6');
 INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Londres', '3'), (NULL, 'Birmingham', '3'), (NULL, 'Glasgow', '3'), (NULL, 'Edimbourg', '3'), (NULL, 'Liverpool', '3');
