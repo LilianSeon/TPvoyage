@@ -1,5 +1,6 @@
 <?php
 require 'connect.php';
+require 'function.php';
 ?>
 <html>
 <head>
@@ -42,11 +43,11 @@ require 'connect.php';
   </div>
 </nav><br>
 <div class="container">
-<form>
+<form method="GET">
 <div class="row">
   <div class="form-group col-md-3 mt-3">
     <label for="exampleFormControlSelect1">Budget</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select name="budget" class="form-control" id="exampleFormControlSelect1">
       <option>Entre 0€ et 300€</option>
       <option>Entre 300€ et 500€</option>
       <option>Plus de 500€</option>
@@ -54,9 +55,9 @@ require 'connect.php';
   </div>
   <div class="form-group col-md-3 mt-3">
     <label for="exampleFormControlSelect1">Climat</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select name="climat" class="form-control" id="exampleFormControlSelect1">
     <?php
-    $sql = 'SELECT * FROM corrppc';
+    $sql = 'SELECT DISTINCT Climat FROM corrppc';
     $req = $pdo->query($sql);
     while($row = $req->fetch()){
         echo '<option>'.$row['Climat'].'</option>';
@@ -67,7 +68,7 @@ require 'connect.php';
   </div>
   <div class="form-group col-md-3 mt-3">
     <label for="exampleFormControlSelect1">Activité</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select name="activite" class="form-control" id="exampleFormControlSelect1">
     <?php
     $sql = 'SELECT * FROM activites';
     $req = $pdo->query($sql);
@@ -79,12 +80,19 @@ require 'connect.php';
     </select>
   </div>
   <div class="col-md-3 mt-5">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <button name="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </div>
 </div>
 </form>
 </div>
 <div id="world-map" style="width: 1200px; height: 800px"></div>
+<?php
+
+if (isset($_GET['search'])) {
+  recherche($_GET['budget'], $_GET['climat'], $_GET['activite']);
+}
+
+?>
 <script>
     var marqueurs = [];
     var jsonData = "";
