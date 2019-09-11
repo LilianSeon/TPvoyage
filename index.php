@@ -84,7 +84,7 @@ require 'connect.php';
 </div>
 </form>
 </div>
-<div id="world-map" style="width: 600px; height: 400px"></div>
+<div id="world-map" style="width: 1200px; height: 800px"></div>
 <script>
   $(function(){
     $('#world-map').vectorMap({map: 'world_mill'});
