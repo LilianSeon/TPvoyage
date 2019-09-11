@@ -87,9 +87,45 @@ require 'connect.php';
 </div>
 <div id="world-map" style="min-width: 100%; height: 800px"></div>
 <script>
-  $(function() {
+  var marqueurs = [];
+  var jsonData = "";
+  var payes = [];
+
+  var colors = ['#24345A', '#279DE1', '#26CDCB', '#FF90AA', '#FED566', '#844076', '#FFCF4F', '#344B5E'];
+
+  $.getJSON("data.json", function(json) {
+    jsonData = json;
+    for (const [key, value] of Object.entries(jsonData)) {
+      var villes = value;
+      console.log(key);
+      var keys = key;
+      for (const [key, value] of Object.entries(villes.ville)) {
+        marqueurs.push({
+          "latLng": [parseFloat(value.lat.replace(",", ".")), parseFloat(value.long.replace(",", "."))],
+          "name": value.ville,
+          "img": villes.url
+        });
+        payes[keys] = colors[Math.ceil(Math.random() * 6)];
+      }
+
+    }
+    console.log(payes);
+  }).then(function() {
     $('#world-map').vectorMap({
       map: 'world_mill',
+      markerStyle: {
+        initial: {
+          fill: '#F8E23B',
+          stroke: '#383f47'
+        }
+      },
+      markers: marqueurs,
+      onMarkerTipShow: function(event, label, index) {
+        console.log(marqueurs[index]);
+        label.html(
+          "<div style='with:200px;height:auto;'><img src='" + marqueurs[index].img + "' width='200px' height='auto'>" + marqueurs[index].name + "<div>"
+        );
+      },
       backgroundColor: "#71C5EA",
       regionStyle: {
         initial: {
@@ -120,8 +156,16 @@ require 'connect.php';
         hover: {
           cursor: 'pointer'
         }
-      }
+      },
+      series: {
+        regions: [{
+          values: payes,
+          attribute: 'fill'
+        }]
+      },
+
     });
+    map.series.regions[0].setValues(myCustomColors);
   });
 </script>
 
