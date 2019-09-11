@@ -86,15 +86,27 @@ require 'connect.php';
 </div>
 <div id="world-map" style="width: 1200px; height: 800px"></div>
 <script>
-  $(function(){
-    $('#world-map').vectorMap({map: 'world_mill'});
-  });
-  
+    var marqueurs = [];
     $.getJSON("data.json", function(json) {
-        console.log(json);
         for (const [key, value] of Object.entries(json)) {
-            console.log(key, value.ville);
+            var villes = value.ville;
+            for (const [key, value] of Object.entries(villes))  {
+                marqueurs.push({"latLng":[parseFloat(value.lat.replace(",", ".")), parseFloat(value.long.replace(",", "."))], "name": value.ville});
+            }
+            
         }
+    }).then(function() {
+        $('#world-map').vectorMap({
+            map: 'world_mill',
+            markerStyle: {
+              initial: {
+                fill: '#F8E23B',
+                stroke: '#383f47'
+              }
+            },
+            markers: marqueurs
+        });
+        console.log(marqueurs);
     });
 </script>
 </html>

@@ -39,8 +39,8 @@
       "ville":[
         {
           "ville":"Athenes",
-          "long":"-6,8327",
-          "lat":"34,015"
+          "long":"23.7275",
+          "lat":"37.9838"
         }
       ],
       "pays":"Grèce",
@@ -86,3 +86,94 @@
       "activite": "culturelle",
       "climat": "océanique",
       "url": "img/angleterre.jpg"
+    },
+    "CA":{
+      "ville": [
+        {
+          "ville":"Toronto",
+          "long":"-79,3806",
+          "lat":"43,6544"
+        },
+        {
+          "ville":"Montréal",
+          "long":"-73,5544",
+          "lat":"45,5087"
+        },
+        {
+          "ville":"Calgary",
+          "long":"-114,0708",
+          "lat":"51,0486"
+        },
+        {
+          "ville":"Ottawa",
+          "long":"-75,6960",
+          "lat":"45,3855"
+        },
+        {
+          "ville":"Vancouver",
+          "long":"-123,1207",
+          "lat":"49,2827"
+        }
+      ], 
+      "pays":"Canada",
+      "temperature": 22,
+      "mois": 12,
+      "budget": 300,
+      "activite": "randonner",
+      "climat": "continental",
+      "url": "img/canada.png"
+    },
+    "EG":{
+      "ville": [
+        {
+          "ville":"Le Caire",
+          "long":"-6,8327",
+          "lat":"34,015"
+        },
+        {
+          "ville":"Alexandrie",
+          "long":"29,9552",
+          "lat":"31,2156"
+        },
+        {
+          "ville":"Sharm El-Sheikh",
+          "long":"34,3299",
+          "lat":"27,9158"
+        }
+      ],
+      "pays":"Egypte",
+      "temperature": 30,
+      "mois": 12,
+      "budget": 700,
+      "activite": "culturelle",
+      "climat": "chaud et sec",
+      "url": "img/egypt.jpg"
+    },
+      "TN":{
+        "ville": [
+          {
+            "ville":"تونس",
+            "long":"10,1654",
+            "lat":"36,8189"
+          },
+          {
+            "ville":"Djerba",
+            "long":"10,8451",
+            "lat":"33,8076"
+          },
+          {
+            "ville":"Tataouine",
+            "long":"10,4517",
+            "lat":"32,9296"
+          }
+        ],
+        "pays":"Tunisie",
+        "temperature": 30,
+        "mois": 12,
+        "budget": 750,
+        "active": "tourisme",
+        "climat": "méditerranéen",
+        "url": "img/tunisie.jpg"
+      }
+  }
+  
