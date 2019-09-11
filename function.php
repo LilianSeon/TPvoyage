@@ -13,8 +13,16 @@ function recherche($budget, $climat, $activite){
     INNER JOIN activites ON corrva.IDActivite = activites.IDActivite
     WHERE TypeBudget = '$budget' AND activites.TypeActivite = '$activite' AND climat = '$climat';";
 
-        $req = $pdo->query($sql);
-        while($row = $req->fetch()){
+    $req = $pdo->query($sql);
+    $result = $pdo->query($sql) ? $req->fetchAll(PDO::FETCH_ASSOC) : [];
+    if(sizeof($result) == 0)
+    {
+       echo '<div class="alert alert-danger" role="alert">Aucun résultat trouvé.</div>';
+    }
+    else
+    {
+        foreach($result as $row)
+        {
             echo '<div class="card" style="width: 18rem;">
                     <img src="img/'.$row["Nom"].'" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -28,8 +36,9 @@ function recherche($budget, $climat, $activite){
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
-                    </div>';
+                </div>';
         }
+    }
 }
 
 ?>
