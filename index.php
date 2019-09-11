@@ -5,6 +5,10 @@ require 'connect.php';
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="js/JVectorMap/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+    <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/JVectorMap/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="js/JVectorMap/jquery-jvectormap-world-mill.js"></script>
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
@@ -80,4 +84,10 @@ require 'connect.php';
 </div>
 </form>
 </div>
+<div id="world-map" style="width: 1200px; height: 800px"></div>
+<script>
+  $(function(){
+    $('#world-map').vectorMap({map: 'world_mill'});
+  });
+</script>
 </html>
