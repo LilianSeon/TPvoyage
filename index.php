@@ -89,5 +89,12 @@ require 'connect.php';
   $(function(){
     $('#world-map').vectorMap({map: 'world_mill'});
   });
+  
+    $.getJSON("data.json", function(json) {
+        console.log(json);
+        for (const [key, value] of Object.entries(json)) {
+            console.log(key, value.ville);
+        }
+    });
 </script>
 </html>
