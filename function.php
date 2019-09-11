@@ -13,6 +13,7 @@ function recherche($budget, $climat, $activite){
     INNER JOIN activites ON corrva.IDActivite = activites.IDActivite
     WHERE TypeBudget = '$budget' AND activites.TypeActivite = '$activite' AND climat = '$climat';";
 
+
         $req = $pdo->query($sql);
         while($row = $req->fetch()){
             echo '<div class="card" style="width: 18rem;">
@@ -29,6 +30,9 @@ function recherche($budget, $climat, $activite){
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                     </div>';
+        }
+        if($req->rowCount() == 0){
+            echo '<div class="alert alert-danger" role="alert">Aucun résultat trouvé.</div>';
         }
 }
 
