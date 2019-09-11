@@ -38,6 +38,7 @@ function recherche($budget, $climat, $activite){
                     </div>
                 </div>';
         }
+    }
 }
 
 ?>
