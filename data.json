@@ -1,6 +1,33 @@
 {
-    "Maroc":{
-    "ville": "Rabat",
+    "MA":{
+    "ville": [
+      {
+        "ville":"Rabat",
+        "long":"-6,8327",
+        "lat":"34,015"
+      },
+      {
+        "ville": "Casablanca",
+        "long":"-7,5898",
+        "lat":"33,5731"
+      },
+      {
+        "ville": "Fès",
+        "long":"-5,0000",
+        "lat":"34.0333"
+      },
+      {
+        "ville": "Tanger",
+        "long":"-5,8339",
+        "lat":"35,7594"
+      },
+      {
+        "ville": "Marrakech",
+        "long":"-8",
+        "lat":"31,6333"
+      }
+    ],
+    "pays":"Maroc",
     "temperature": 23,
     "mois": 12,
     "budget": 500,
@@ -8,8 +35,15 @@
     "climat": "méditerranéen",
     "url": "img/maroc.jpg"
     },
-    "Grèce":{
-      "ville": "Athenes",
+    "GR":{
+      "ville":[
+        {
+          "ville":"Athenes",
+          "long":"23.7275",
+          "lat":"37.9838"
+        }
+      ],
+      "pays":"Grèce",
       "temperature": 30,
       "mois": 12,
       "budget": 450,
@@ -17,8 +51,35 @@
       "climat": "chaud",
       "url": "img/grece.jpg"
     },
-    "Angleterre":{
-      "ville": "Londres",
+    "GB":{
+      "ville":  [
+        {
+          "ville": "Londres",
+          "long":"-0,1198",
+          "lat":"51,5112"
+        },
+        {
+          "ville": "Birmingham",
+          "long":"-1,8104",
+          "lat":"52.4862"
+        },
+        {
+          "ville": "Glasgow",
+          "long":"-4,2576",
+          "lat":"55,8651"
+        },
+        {
+          "ville": "Liverpool",
+          "long":"-2,8779",
+          "lat":"54,4105"
+        },
+        {
+          "ville": "Edinburgh",
+          "long":"-3,1882",
+          "lat":"55,9535"
+        }
+      ],     
+      "pays":"Angleterre",
       "temperature": 16,
       "mois": 12,
       "budget": 130,
@@ -26,8 +87,35 @@
       "climat": "océanique",
       "url": "img/angleterre.jpg"
     },
-    "Canada":{
-      "ville": "Toronto",
+    "CA":{
+      "ville": [
+        {
+          "ville":"Toronto",
+          "long":"-79,3806",
+          "lat":"43,6544"
+        },
+        {
+          "ville":"Montréal",
+          "long":"-73,5544",
+          "lat":"45,5087"
+        },
+        {
+          "ville":"Calgary",
+          "long":"-114,0708",
+          "lat":"51,0486"
+        },
+        {
+          "ville":"Ottawa",
+          "long":"-75,6960",
+          "lat":"45,3855"
+        },
+        {
+          "ville":"Vancouver",
+          "long":"-123,1207",
+          "lat":"49,2827"
+        }
+      ], 
+      "pays":"Canada",
       "temperature": 22,
       "mois": 12,
       "budget": 300,
@@ -35,8 +123,25 @@
       "climat": "continental",
       "url": "img/canada.png"
     },
-    "Egypte":{
-      "ville": "Le Caire",
+    "EG":{
+      "ville": [
+        {
+          "ville":"Le Caire",
+          "long":"-6,8327",
+          "lat":"34,015"
+        },
+        {
+          "ville":"Alexandrie",
+          "long":"29,9552",
+          "lat":"31,2156"
+        },
+        {
+          "ville":"Sharm El-Sheikh",
+          "long":"34,3299",
+          "lat":"27,9158"
+        }
+      ],
+      "pays":"Egypte",
       "temperature": 30,
       "mois": 12,
       "budget": 700,
@@ -44,8 +149,25 @@
       "climat": "chaud et sec",
       "url": "img/egypt.jpg"
     },
-      "Tunisie":{
-        "ville": "تونس",
+      "TN":{
+        "ville": [
+          {
+            "ville":"تونس",
+            "long":"10,1654",
+            "lat":"36,8189"
+          },
+          {
+            "ville":"Djerba",
+            "long":"10,8451",
+            "lat":"33,8076"
+          },
+          {
+            "ville":"Tataouine",
+            "long":"10,4517",
+            "lat":"32,9296"
+          }
+        ],
+        "pays":"Tunisie",
         "temperature": 30,
         "mois": 12,
         "budget": 750,
@@ -54,3 +176,4 @@
         "url": "img/tunisie.jpg"
       }
   }
+  

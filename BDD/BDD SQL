@@ -10,9 +10,9 @@ USE TPVoyage;
 #------------------------------------------------------------
 
 CREATE TABLE Pays(
-        IDPays Int  Auto_increment  NOT NULL ,
+        Code  Varchar(2)  NOT NULL ,
         Nom    Varchar (50) NOT NULL
-	,CONSTRAINT Pays_PK PRIMARY KEY (IDPays)
+	,CONSTRAINT Pays_PK PRIMARY KEY (Code)
 )ENGINE=InnoDB;
 
 
@@ -23,10 +23,10 @@ CREATE TABLE Pays(
 CREATE TABLE Villes(
         IDVille Int  Auto_increment  NOT NULL ,
         Nom     Varchar (50) NOT NULL ,
-        IDPays  Int NOT NULL
+        Code  Varchar(2) NOT NULL
 	,CONSTRAINT Villes_PK PRIMARY KEY (IDVille)
 
-	,CONSTRAINT Villes_Pays_FK FOREIGN KEY (IDPays) REFERENCES Pays(IDPays)
+	,CONSTRAINT Villes_Pays_FK FOREIGN KEY (Code) REFERENCES Pays(Code)
 )ENGINE=InnoDB;
 
 
@@ -58,13 +58,13 @@ CREATE TABLE Activites(
 
 CREATE TABLE CorrPPC(
         IDPeriode   Int NOT NULL ,
-        IDPays      Int NOT NULL ,
+        Code      Varchar(2) NOT NULL ,
         Climat      Varchar (50) NOT NULL ,
         Temperature Int NOT NULL
-	,CONSTRAINT CorrPPC_PK PRIMARY KEY (IDPeriode,IDPays)
+	,CONSTRAINT CorrPPC_PK PRIMARY KEY (IDPeriode,Code)
 
 	,CONSTRAINT CorrPPC_Periodes_FK FOREIGN KEY (IDPeriode) REFERENCES Periodes(IDPeriode)
-	,CONSTRAINT CorrPPC_Pays0_FK FOREIGN KEY (IDPays) REFERENCES Pays(IDPays)
+	,CONSTRAINT CorrPPC_Pays0_FK FOREIGN KEY (Code) REFERENCES Pays(Code)
 )ENGINE=InnoDB;
 
 
@@ -97,12 +97,15 @@ CREATE TABLE CorrVA(
 )ENGINE=InnoDB;
 
 
-INSERT INTO `pays` (`IDPays`, `Nom`) VALUES (NULL, 'Maroc'), (NULL, 'Grèce'), (NULL, 'Angleterre'), (NULL, 'Canada'), (NULL, 'Egypte'), (NULL, 'Tunisie');
+INSERT INTO `pays` (`Code`, `Nom`) VALUES ('MA', 'Maroc'), ('GR', 'Grèce'), ('GB', 'Angleterre'), ('CA', 'Canada'), ('EG', 'Egypte'), ('TN', 'Tunisie');
 
-INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Rabat', '1'), (NULL, 'Tunis', '6');
-INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Londres', '3'), (NULL, 'Birmingham', '3'), (NULL, 'Glasgow', '3'), (NULL, 'Edimbourg', '3'), (NULL, 'Liverpool', '3');
-INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Casablanca', '1'), (NULL, 'Fès', '1'), (NULL, 'Tanger', '1'), (NULL, 'Marrakech', '1');
-INSERT INTO `villes` (`IDVille`, `Nom`, `IDPays`) VALUES (NULL, 'Toronto', '4'), (NULL, 'Montréal', '4'), (NULL, 'Calgary', '4'), (NULL, 'Ottawa', '4'), (NULL, 'Vancouver', '4');
+INSERT INTO `villes` (`IDVille`, `Nom`, `Code`) VALUES (NULL, 'Rabat', 'MA'), (NULL, 'Tunis', 'TN'), (NULL, 'Djerba', 'TN');
+INSERT INTO `villes` (`IDVille`, `Nom`, `Code`) VALUES (NULL, 'Londres', 'GB'), (NULL, 'Birmingham', 'GB'), (NULL, 'Glasgow', 'GB'), (NULL, 'Edimbourg', 'GB'), (NULL, 'Liverpool', 'GB');
+INSERT INTO `villes` (`IDVille`, `Nom`, `Code`) VALUES (NULL, 'Casablanca', 'MA'), (NULL, 'Fès', 'MA'), (NULL, 'Tanger', 'MA'), (NULL, 'Marrakech', 'MA');
+INSERT INTO `villes` (`IDVille`, `Nom`, `Code`) VALUES (NULL, 'Toronto', 'CA'), (NULL, 'Montréal', 'CA'), (NULL, 'Calgary', 'CA'), (NULL, 'Ottawa', 'CA'), (NULL, 'Vancouver', 'CA');
+INSERT INTO `villes` (`IDVille`, `Nom`, `Code`) VALUES (NULL, 'Athenes', 'GR');
+INSERT INTO `villes` (`IDVille`, `Nom`, `Code`) VALUES (NULL, 'Tataouine', 'TN'), (NULL, 'Alexandrie', 'EG'), (NULL, 'Sharm El Sheikh', 'EG');
+
 
 INSERT INTO `activites` (`IDActivite`, `TypeActivite`) VALUES (NULL, 'tourisme'), (NULL, 'culturelle'), (NULL, 'randonnées'), (NULL, 'balnéaire');
 
@@ -111,5 +114,20 @@ INSERT INTO `periodes` (`IDPeriode`, `Mois`) VALUES (NULL, '1'), (NULL, '2'), (N
 INSERT INTO `corrvpb` (`IDPeriode`, `IDVille`, `Budget`) VALUES ('12', '1', '500'), ('12', '9', '450'), ('12', '3', '130'), ('12', '12', '300'), ('12', '11', '500'), ('12', '2', '750');
 
 INSERT INTO `corrva` (`IDActivite`, `IDVille`) VALUES ('4', '1'), ('2', '3'), ('2', '12'), ('1', '11'), ('3', '15'), ('1', '8'), ('2', '6'), ('1', '10');
+INSERT INTO `corrva` (`IDActivite`, `IDVille`) VALUES ('4', '2'), ('2', '4'), ('1', '5'), ('2', '7'), ('2', '9'), ('3', '13'), ('1', '14'), ('2', '16'), ('1', '17'), ('2', '18'), ('1', '19'), ('2', '20'), ('3', '21');
 
-INSERT INTO `corrppc` (`IDPeriode`, `IDPays`, `Climat`, `Temperature`) VALUES ('12', '1', 'chaud et sec', '23'), ('12', '3', 'océanique', '16'), ('12', '6', 'méditerranéen', '25'), ('12', '4', 'continental', '22'), ('12', '5', 'chaud et sec', '30');
+INSERT INTO `corrppc` (`IDPeriode`, `Code`, `Climat`, `Temperature`) VALUES ('12', 'MA', 'méditerranéen', '23'), ('12', 'GR', 'chaud et sec', '30'), ('12', 'GB', 'océanique', '16'), ('12', 'CA', 'continental', '22'), ('12', 'EG', 'chaud et sec', '30'), ('12', 'TN', 'méditerranéen', '30');
+INSERT INTO `corrvpb` (`IDPeriode`, `IDVille`, `Budget`) VALUES ('12', '4', '500'), ('12', '5', '550'), ('12', '6', '500'), ('12', '7', '450'), ('12', '8', '450'), ('12', '10', '300'), ('12', '13', '800'), ('12', '14', '900'), ('12', '15', '700'), ('12', '17', '1000'), ('12', '18', '350'), ('12', '19', '300'), ('12', '20', '250'), ('12', '21', '280');
+
+ALTER TABLE CorrVPB 
+ADD TypeBudget VARCHAR(50);
+UPDATE CorrVPB
+SET TypeBudget = 'Entre 0€ et 300€'
+WHERE Budget <=300;
+UPDATE CorrVPB
+SET TypeBudget = 'Entre 300€ et 500€'
+WHERE Budget>300 AND Budget<=500;
+UPDATE CorrVPB
+SET TypeBudget = 'Plus de 500€'
+WHERE Budget >500;
+
