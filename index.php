@@ -87,11 +87,13 @@ require 'connect.php';
 <div id="world-map" style="width: 1200px; height: 800px"></div>
 <script>
     var marqueurs = [];
+    var jsonData = "";
     $.getJSON("data.json", function(json) {
-        for (const [key, value] of Object.entries(json)) {
-            var villes = value.ville;
-            for (const [key, value] of Object.entries(villes))  {
-                marqueurs.push({"latLng":[parseFloat(value.lat.replace(",", ".")), parseFloat(value.long.replace(",", "."))], "name": value.ville});
+        jsonData = json;
+        for (const [key, value] of Object.entries(jsonData)) {
+            var villes = value;
+            for (const [key, value] of Object.entries(villes.ville))  {
+                marqueurs.push({"latLng":[parseFloat(value.lat.replace(",", ".")), parseFloat(value.long.replace(",", "."))], "name": value.ville, "img": villes.url});
             }
             
         }
@@ -104,9 +106,14 @@ require 'connect.php';
                 stroke: '#383f47'
               }
             },
-            markers: marqueurs
+            markers: marqueurs,
+            onMarkerTipShow: function(event, label, index){
+                console.log(marqueurs[index]);
+                label.html(
+                    "<div style='with:200px;height:auto;'><img src='"+marqueurs[index].img+"' width='200px' height='auto'>"+marqueurs[index].name+"<div>"
+                );
+            }
         });
-        console.log(marqueurs);
     });
 </script>
 </html>
