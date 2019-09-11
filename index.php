@@ -43,7 +43,7 @@ require 'function.php';
   </div>
 </nav><br>
 <div class="container">
-<form method="GET">
+<form method="POST">
 <div class="row">
   <div class="form-group col-md-3 mt-3">
     <label for="exampleFormControlSelect1">Budget</label>
@@ -88,8 +88,8 @@ require 'function.php';
 <div id="world-map" style="width: 1200px; height: 800px"></div>
 <?php
 
-if (isset($_GET['search'])) {
-  recherche($_GET['budget'], $_GET['climat'], $_GET['activite']);
+if (isset($_POST['search'])) {
+  recherche($_POST['budget'], $_POST['climat'], $_POST['activite']);
 }
 
 ?>
