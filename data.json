@@ -1,56 +1,88 @@
 {
-    "Maroc":{
-        "ville": "Rabat",
-        "temperature": 23,
-        "mois": 12,
-        "budget": 500,
-        "activite": "plage",
-        "climat": "méditerranéen",
-        "url": "img/maroc.jpg"
-    },
-    "Grèce":{
-        "ville": "Athenes",
-        "temperature": 30,
-        "mois": 12,
-        "budget": 450,
-        "activite": "tourisme",
-        "climat": "chaud",
-        "url": "img/grece.jpg"
-    },
-    "Angleterre":{
-        "ville": "Londres",
-        "temperature": 16,
-        "mois": 12,
-        "budget": 130,
-        "activite": "culturelle",
-        "climat": "océanique",
-        "url": "img/angleterre.jpg"
-    },
-    "Canada":{
-        "ville": "Toronto",
-        "temperature": 22,
-        "mois": 12,
-        "budget": 300,
-        "activite": "randonner",
-        "climat": "continental",
-        "url": "img/canada.png"
-    },
-    "Egypte":{
-        "ville": "Le Caire",
-        "temperature": 30,
-        "mois": 12,
-        "budget": 700,
-        "activite": "culturelle",
-        "climat": "chaud et sec",
-        "url": "img/egypt.jpg"
-    },
-    "Tunisie":{
-        "ville": "تونس",
-        "temperature": 30,
-        "mois": 12,
-        "budget": 750,
-        "active": "tourisme",
-        "climat": "méditerranéen",
-        "url": "img/tunisie.jpg"
+    "MA":{
+    "ville": [
+      {
+        "ville":"Rabat",
+        "long":"-6,8327",
+        "lat":"34,015"
+      },
+      {
+        "ville": "Casablanca",
+        "long":"-7,5898",
+        "lat":"33,5731"
+      },
+      {
+        "ville": "Fès",
+        "long":"-5,0000",
+        "lat":"34.0333"
+      },
+      {
+        "ville": "Tanger",
+        "long":"-5,8339",
+        "lat":"35,7594"
+      },
+      {
+        "ville": "Marrakech",
+        "long":"-8",
+        "lat":"31,6333"
       }
-  }
+    ],
+    "pays":"Maroc",
+    "temperature": 23,
+    "mois": 12,
+    "budget": 500,
+    "activite": "plage",
+    "climat": "méditerranéen",
+    "url": "img/maroc.jpg"
+    },
+    "GR":{
+      "ville":[
+        {
+          "ville":"Athenes",
+          "long":"-6,8327",
+          "lat":"34,015"
+        }
+      ],
+      "pays":"Grèce",
+      "temperature": 30,
+      "mois": 12,
+      "budget": 450,
+      "activite": "tourisme",
+      "climat": "chaud",
+      "url": "img/grece.jpg"
+    },
+    "GB":{
+      "ville":  [
+        {
+          "ville": "Londres",
+          "long":"-0,1198",
+          "lat":"51,5112"
+        },
+        {
+          "ville": "Birmingham",
+          "long":"-1,8104",
+          "lat":"52.4862"
+        },
+        {
+          "ville": "Glasgow",
+          "long":"-4,2576",
+          "lat":"55,8651"
+        },
+        {
+          "ville": "Liverpool",
+          "long":"-2,8779",
+          "lat":"54,4105"
+        },
+        {
+          "ville": "Edinburgh",
+          "long":"-3,1882",
+          "lat":"55,9535"
+        }
+      ],     
+      "pays":"Angleterre",
+      "temperature": 16,
+      "mois": 12,
+      "budget": 130,
+      "activite": "culturelle",
+      "climat": "océanique",
+      "url": "img/angleterre.jpg"
