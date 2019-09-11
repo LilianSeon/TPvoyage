@@ -118,3 +118,16 @@ INSERT INTO `corrva` (`IDActivite`, `IDVille`) VALUES ('4', '2'), ('2', '4'), ('
 
 INSERT INTO `corrppc` (`IDPeriode`, `Code`, `Climat`, `Temperature`) VALUES ('12', 'MA', 'méditerranéen', '23'), ('12', 'GR', 'chaud et sec', '30'), ('12', 'GB', 'océanique', '16'), ('12', 'CA', 'continental', '22'), ('12', 'EG', 'chaud et sec', '30'), ('12', 'TN', 'méditerranéen', '30');
 INSERT INTO `corrvpb` (`IDPeriode`, `IDVille`, `Budget`) VALUES ('12', '4', '500'), ('12', '5', '550'), ('12', '6', '500'), ('12', '7', '450'), ('12', '8', '450'), ('12', '10', '300'), ('12', '13', '800'), ('12', '14', '900'), ('12', '15', '700'), ('12', '17', '1000'), ('12', '18', '350'), ('12', '19', '300'), ('12', '20', '250'), ('12', '21', '280');
+
+ALTER TABLE CorrVPB 
+ADD TypeBudget VARCHAR(50);
+UPDATE CorrVPB
+SET TypeBudget = 'Entre 0€ et 300€'
+WHERE Budget <=300;
+UPDATE CorrVPB
+SET TypeBudget = 'Entre 300€ et 500€'
+WHERE Budget>300 AND Budget<=500;
+UPDATE CorrVPB
+SET TypeBudget = 'Plus de 500€'
+WHERE Budget >500;
+

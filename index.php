@@ -94,8 +94,34 @@ if (isset($_GET['search'])) {
 
 ?>
 <script>
-  $(function(){
-    $('#world-map').vectorMap({map: 'world_mill'});
-  });
+    var marqueurs = [];
+    var jsonData = "";
+    $.getJSON("data.json", function(json) {
+        jsonData = json;
+        for (const [key, value] of Object.entries(jsonData)) {
+            var villes = value;
+            for (const [key, value] of Object.entries(villes.ville))  {
+                marqueurs.push({"latLng":[parseFloat(value.lat.replace(",", ".")), parseFloat(value.long.replace(",", "."))], "name": value.ville, "img": villes.url});
+            }
+            
+        }
+    }).then(function() {
+        $('#world-map').vectorMap({
+            map: 'world_mill',
+            markerStyle: {
+              initial: {
+                fill: '#F8E23B',
+                stroke: '#383f47'
+              }
+            },
+            markers: marqueurs,
+            onMarkerTipShow: function(event, label, index){
+                console.log(marqueurs[index]);
+                label.html(
+                    "<div style='with:200px;height:auto;'><img src='"+marqueurs[index].img+"' width='200px' height='auto'>"+marqueurs[index].name+"<div>"
+                );
+            }
+        });
+    });
 </script>
 </html>
