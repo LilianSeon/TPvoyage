@@ -2,11 +2,12 @@
 require 'connect.php';
 ?>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="js/JVectorMap/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
-    <script src="js/jquery-3.4.1.min.js"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="js/JVectorMap/jquery-jvectormap-2.0.3.css" type="text/css" media="screen" />
+  <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/JVectorMap/jquery-jvectormap-2.0.3.min.js"></script>
   <script src="js/JVectorMap/jquery-jvectormap-world-mill.js"></script>
 </head>
@@ -42,52 +43,86 @@ require 'connect.php';
   </div>
 </nav><br>
 <div class="container">
-<form>
-<div class="row">
-  <div class="form-group col-md-3 mt-3">
-    <label for="exampleFormControlSelect1">Budget</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>Entre 0€ et 300€</option>
-      <option>Entre 300€ et 500€</option>
-      <option>Plus de 500€</option>
-    </select>
-  </div>
-  <div class="form-group col-md-3 mt-3">
-    <label for="exampleFormControlSelect1">Climat</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-    <?php
-    $sql = 'SELECT * FROM corrppc';
-    $req = $pdo->query($sql);
-    while($row = $req->fetch()){
-        echo '<option>'.$row['Climat'].'</option>';
-    }
-    $req->closeCursor();
-    ?>
-    </select>
-  </div>
-  <div class="form-group col-md-3 mt-3">
-    <label for="exampleFormControlSelect1">Activité</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-    <?php
-    $sql = 'SELECT * FROM activites';
-    $req = $pdo->query($sql);
-    while($row = $req->fetch()){
-        echo '<option>'.$row['TypeActivite'].'</option>';
-    }
-    $req->closeCursor();
-    ?>
-    </select>
-  </div>
-  <div class="col-md-3 mt-5">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </div>
+  <form>
+    <div class="row">
+      <div class="form-group col-md-3 mt-3">
+        <label for="exampleFormControlSelect1">Budget</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>Entre 0€ et 300€</option>
+          <option>Entre 300€ et 500€</option>
+          <option>Plus de 500€</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3 mt-3">
+        <label for="exampleFormControlSelect1">Climat</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <?php
+          $sql = 'SELECT * FROM corrppc';
+          $req = $pdo->query($sql);
+          while ($row = $req->fetch()) {
+            echo '<option>' . $row['Climat'] . '</option>';
+          }
+          $req->closeCursor();
+          ?>
+        </select>
+      </div>
+      <div class="form-group col-md-3 mt-3">
+        <label for="exampleFormControlSelect1">Activité</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <?php
+          $sql = 'SELECT * FROM activites';
+          $req = $pdo->query($sql);
+          while ($row = $req->fetch()) {
+            echo '<option>' . $row['TypeActivite'] . '</option>';
+          }
+          $req->closeCursor();
+          ?>
+        </select>
+      </div>
+      <div class="col-md-3 mt-5">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
 </div>
-</form>
-</div>
-<div id="world-map" style="width: 1200px; height: 800px"></div>
+<div id="world-map" style="min-width: 100%; height: 800px"></div>
 <script>
-  $(function(){
-    $('#world-map').vectorMap({map: 'world_mill'});
+  $(function() {
+    $('#world-map').vectorMap({
+      map: 'world_mill',
+      backgroundColor: "#71C5EA",
+      regionStyle: {
+        initial: {
+          fill: 'white',
+          "fill-opacity": 1,
+          stroke: 'none',
+          "stroke-width": 0,
+          "stroke-opacity": 1
+        },
+        hover: {
+          "fill-opacity": 0.8,
+          cursor: 'pointer',
+          fill: "#ffa500"
+        },
+        selected: {
+          fill: 'yellow'
+        },
+        selectedHover: {}
+      },
+      regionLabelStyle: {
+        initial: {
+          'font-family': 'Verdana',
+          'font-size': '12',
+          'font-weight': 'bold',
+          cursor: 'default',
+          fill: 'black'
+        },
+        hover: {
+          cursor: 'pointer'
+        }
+      }
+    });
   });
 </script>
+
 </html>
