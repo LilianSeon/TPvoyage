@@ -34,7 +34,7 @@ function recherche($budget, $climat, $activite){
                                 <li class="list-group-item">'.$row["TypeBudget"].'</li>
                             </ul>
                         </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="https://www.skyscanner.fr/transport/vols/ory/'.$row["Code"].'/190916/190923/?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home" target="_blank" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>';
         }
