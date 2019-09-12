@@ -1,110 +1,32 @@
-<?php
-require 'connect.php';
-require 'function.php';
-?>
-<html>
-
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="js/JVectorMap/jquery-jvectormap-2.0.3.css" type="text/css" media="screen" />
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/JVectorMap/jquery-jvectormap-2.0.3.min.js"></script>
-  <script src="js/JVectorMap/jquery-jvectormap-world-mill.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img src="./img/lo.png" style=" max-width: 95px;
-    max-height: 168px; margin: 0 11px 0px 0px;" />
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  ​
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="administration.php">Administration <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav><br>
-<div class="container">
-  <form method="GET">
-    <div class="row">
-      <div class="form-group col-md-3 mt-3">
-        <label for="exampleFormControlSelect1">Budget</label>
-        <select name="budget" class="form-control" id="exampleFormControlSelect1">
-          <option>Entre 0€ et 300€</option>
-          <option>Entre 300€ et 500€</option>
-          <option>Plus de 500€</option>
-        </select>
-      </div>
-      <div class="form-group col-md-3 mt-3">
-        <label for="exampleFormControlSelect1">Climat</label>
-        <select name="climat" class="form-control" id="exampleFormControlSelect1">
-          <?php
-          $sql = 'SELECT DISTINCT Climat FROM corrppc';
-          $req = $pdo->query($sql);
-          while ($row = $req->fetch()) {
-            echo '<option>' . $row['Climat'] . '</option>';
-          }
-          $req->closeCursor();
-          ?>
-        </select>
-      </div>
-      <div class="form-group col-md-3 mt-3">
-        <label for="exampleFormControlSelect1">Activité</label>
-        <select name="activite" class="form-control" id="exampleFormControlSelect1">
-          <?php
-          $sql = 'SELECT * FROM activites';
-          $req = $pdo->query($sql);
-          while ($row = $req->fetch()) {
-            echo '<option>' . $row['TypeActivite'] . '</option>';
-          }
-          $req->closeCursor();
-          ?>
-        </select>
-      </div>
-      <div class="col-md-3 mt-5">
-        <button name="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <button name="Administration" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="document.location.href = 'administration.php'">Administration</button>
-      </div>
-    </div>
-  </form>
+<h1 class="title">Let's travel the world </h1>
+<div class="scene">
+    <span class="cloud cloud--small"></span>
+    <svg xmlns="http://www.w3.org/2000/svg" id="plane" class="plane" viewBox="0 0 104 47" x="0" y="0" width="104" height="47" background-color="#ffffff00">
+        <g id="avion">
+            <path d="M20 36C25 38 69 43 80 40 92 38 106 33 104 21 103 13 95 13 90 9 85 5 79 2 76 1 70-1 65 0 60 2 57 3 25 14 23 13 21 12 12 2 9 3 5 4 1 5 1 6 2 7 15 34 20 36Z" fill="#0085b2" />
+            <path d="M23 36C28 37 69 43 80 40 88 38 98 34 102 29 82 32 22 36 23 36Z" stroke="#ffffff00" stroke-width="1" fill="#14647f" />
+            <path d="M42 39C48 40 60 40 67 40 71 32 72 26 72 26L44 29C44 29 44 35 42 39Z" stroke="#ffffff00" stroke-width="1" fill="#0c3b4d" />
+            <path d="M7 16C7 16 9 20 10 22 13 27 16 13 16 13L7 16Z" stroke="#ffffff00" stroke-width="1" fill="#0c3b4d" />
+            <path d="M40 29C40 29 41 34 34 42 27 51 48 46 58 39 74 28 72 25 72 25L40 29Z" stroke="#ffffff00" stroke-width="1" fill="#006e96" />
+            <path d="M5 14C5 14 6 15 3 19 1 22 10 20 13 17 19 11 17 11 17 11L5 14Z" stroke="#ffffff00" stroke-width="1" fill="#006e96" />
+            <path d="M90 10C88 8 83 4 80 3 78 3 68 7 68 8 70 12 80 8 90 10Z" stroke="#ffffff00" stroke-width="1" fill="#0c3b4d" />
+            <path d="M89 9C87 7 82 3 79 2 77 2 67 6 67 7 69 11 79 7 89 9Z" stroke="#ffffff00" stroke-width="1" fill="#afe2ff" />
+        </g>
+    </svg>
+    <span class="cloud cloud--medium"></span>
+    <span class="cloud cloud--large"></span>
 </div>
-<div class="alert alert-danger" id="divAlert" style="display: none" role="alert">Aucun résultat trouvé.</div>
-<div id="world-map" style="min-width: 100%; height: 800px"></div>
-<?php
-if (isset($_GET['search'])) {
-  recherche($_GET['budget'], $_GET['climat'], $_GET['activite']);
-}
-else
-{
-    echo '<script type="text/javascript" src="js/map.js"></script>';
-}
-?>
-</body>
-<footer class="page-footer font-small lightblue">
-  <div class="footer-copyright text-center py-3">© 2019 Hitema : TPVoyage<br>
-    Groupe : Afef, Khadija, Léa, Abdel, Damien et Lilian
-  </div>
-</footer>
-</html>
+
+<a class="effect1" href="./index1.php">
+    Let's Go!
+    <span class="bg"></span>
+</a>
+
+
+<!--
+The size of the button is scaled 3x using css. You can reduce it to 1x. See the CSS.
+-->
