@@ -103,15 +103,16 @@ function modif($id, $budget){
     $pdo->exec('SET NAMES utf8');
 
     $sql = "UPDATE corrvpb
-    SET corrvpb.Budget = $budget
-    WHERE IDVille = $id;UPDATE corrvpb
+    SET Budget = $budget
+    WHERE IDVille = $id;
+    UPDATE corrvpb
     SET TypeBudget =
     CASE
-        WHEN budget <= 300 THEN 'Entre 0€ et 300€'
-       WHEN (Budget > 300 AND Budget <= 500) THEN 'Entre 300€ et 500€'
-       WHEN Budget > 500 THEN 'Plus de 500€'
+        WHEN $budget <= 300 THEN 'Entre 0€ et 300€'
+       WHEN ($budget > 300 AND $budget <= 500) THEN 'Entre 300€ et 500€'
+       WHEN $budget > 500 THEN 'Plus de 500€'
     END
-    WHERE IDVile = $id";
+    WHERE IDVille = $id";
 
     $req = $pdo->query($sql);
     if($req){
@@ -122,7 +123,7 @@ function modif($id, $budget){
     
 }
 
-function add($codePays, $ville, $long, $lat, $activite){
+function add($codePays, $ville, $long, $lat, $activite, $budget){
     $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', ''); 
     $pdo->exec('SET NAMES utf8');
 
@@ -136,16 +137,32 @@ function add($codePays, $ville, $long, $lat, $activite){
 
     while($row = $req2->fetch()){
         var_dump($row);
-        $return = $row["MAX(idville)"];
+        $idville = $row["MAX(idville)"];
     }
 
-    $sql3 = "INSERT INTO CorrVA (idactivite, idville) VALUES ('$activite', '$return');";
+    $sql3 = "INSERT INTO CorrVA (idactivite, idville) VALUES ('$activite', '$idville');";
+    $req3 = $pdo->query($sql3);
 
-    if($req){
+    $sql4 = "INSERT INTO CorrVPB(IDPeriode, IDVille, Budget) 
+    VALUES ('12', '$idville', '$budget');
+    UPDATE corrvpb
+    SET TypeBudget =
+    CASE
+       WHEN $budget <= 300 THEN 'Entre 0€ et 300€'
+       WHEN ($budget > 300 AND $budget <= 500) THEN 'Entre 300€ et 500€'
+       WHEN $budget > 500 THEN 'Plus de 500€'
+    END
+    WHERE IDVille = $idville;";
+
+    $req4 = $pdo->query($sql4);
+
+
+    if($req3){
         echo '<div class="row"><div class="alert alert-success col-md-3 offset-md-4" role="alert">
         <div class="">Ville ajouté !</div>
       </div></div>';
     }
+
 
 }
 

@@ -68,14 +68,18 @@
     <label for="formGroupExampleInput3">Latitude</label>
     <input type="text" class="form-control" id="formGroupExampleInput3" name="lat" placeholder="latitude">
   </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput4">Budget</label>
+    <input type="number" class="form-control" id="formGroupExampleInput4" name="budget" placeholder="budget">
+  </div>
   <button name="add" type="submit" class="btn btn-primary">Ajouter</button>
 </form>
 </div>
 <?php
 require 'function.php';
-
+var_dump($_POST);
 if(isset($_POST['add'])){
-    add($_POST['pays'], $_POST["ville"], $_POST["long"], $_POST["lat"], $_POST["activite"]);
+    add($_POST['pays'], $_POST["ville"], $_POST["long"], $_POST["lat"], $_POST["activite"], $_POST["budget"]);
 }
 
 
