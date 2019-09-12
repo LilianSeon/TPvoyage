@@ -67,11 +67,28 @@ echo '<div class="row">';
                            <li class="list-group-item">'.$row["TypeBudget"].'</li>
                        </ul>
                    </p>
-                   <button type="submit name="modif" class="btn btn-primary">Modifier les informations</button>
+                   <button type="submit" name="modif" class="btn btn-primary">Modifier les informations</button>
+                   <button type="button" name="delete" onclick="document.location = \'/TPVoyage/administration.php/?idSuppr='.$row["IDVille"].'\'" class="btn btn-primary">Supprimer la ville</button>
                </div>
                </div>
                <input name="IDVille" type="hidden" value="'.$row["IDVille"].'">
                <input name="nom" type="hidden" value="'.$row["nom"].'">
                </form>';
-   }?>
+   }
+
+if(isset($_GET['idSuppr']) && $_GET['idSuppr'] != '')
+{
+    $result = supprimer($_GET['idSuppr'], $pdo);
+    var_dump($result);
+    if($result)
+    {
+        echo '<script>document.location = "/TPVoyage/administration.php"</script>';
+    }
+    else
+    {
+        echo '<script>$("#divAlertSuppr").show();</script>';
+    }
+}
+?>
    </div>
+</body>
