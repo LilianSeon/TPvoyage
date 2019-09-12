@@ -1,5 +1,6 @@
 <?php
 require 'connect.php';
+require 'function.php';
 ?>
 <html>
 
@@ -16,7 +17,7 @@ require 'connect.php';
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
+  ​
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -43,11 +44,11 @@ require 'connect.php';
   </div>
 </nav><br>
 <div class="container">
-  <form>
+  <form method="GET">
     <div class="row">
       <div class="form-group col-md-3 mt-3">
         <label for="exampleFormControlSelect1">Budget</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select name="budget" class="form-control" id="exampleFormControlSelect1">
           <option>Entre 0€ et 300€</option>
           <option>Entre 300€ et 500€</option>
           <option>Plus de 500€</option>
@@ -55,9 +56,9 @@ require 'connect.php';
       </div>
       <div class="form-group col-md-3 mt-3">
         <label for="exampleFormControlSelect1">Climat</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select name="climat" class="form-control" id="exampleFormControlSelect1">
           <?php
-          $sql = 'SELECT * FROM corrppc';
+          $sql = 'SELECT DISTINCT Climat FROM corrppc';
           $req = $pdo->query($sql);
           while ($row = $req->fetch()) {
             echo '<option>' . $row['Climat'] . '</option>';
@@ -68,7 +69,7 @@ require 'connect.php';
       </div>
       <div class="form-group col-md-3 mt-3">
         <label for="exampleFormControlSelect1">Activité</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select name="activite" class="form-control" id="exampleFormControlSelect1">
           <?php
           $sql = 'SELECT * FROM activites';
           $req = $pdo->query($sql);
@@ -80,36 +81,40 @@ require 'connect.php';
         </select>
       </div>
       <div class="col-md-3 mt-5">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button name="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>
     </div>
   </form>
 </div>
 <div id="world-map" style="min-width: 100%; height: 800px"></div>
+<?php
+if (isset($_GET['search'])) {
+  recherche($_GET['budget'], $_GET['climat'], $_GET['activite']);
+}
+?>
 <script>
   var marqueurs = [];
   var jsonData = "";
   var payes = [];
-
   var colors = ['#24345A', '#279DE1', '#26CDCB', '#FF90AA', '#FED566', '#844076', '#FFCF4F', '#344B5E'];
-
   $.getJSON("data.json", function(json) {
     jsonData = json;
     for (const [key, value] of Object.entries(jsonData)) {
       var villes = value;
-      console.log(key);
       var keys = key;
       for (const [key, value] of Object.entries(villes.ville)) {
         marqueurs.push({
           "latLng": [parseFloat(value.lat.replace(",", ".")), parseFloat(value.long.replace(",", "."))],
           "name": value.ville,
-          "img": villes.url
+          "img": villes.url,
+          "climat": villes.climat,
+          "activite": villes.activite,
+          "budget": villes.budget
         });
         payes[keys] = colors[Math.ceil(Math.random() * 6)];
       }
 
     }
-    console.log(payes);
   }).then(function() {
     $('#world-map').vectorMap({
       map: 'world_mill',
@@ -119,53 +124,34 @@ require 'connect.php';
           stroke: '#383f47'
         }
       },
-      markers: marqueurs,
-      onMarkerTipShow: function(event, label, index) {
-        console.log(marqueurs[index]);
-        label.html(
-          "<div style='with:200px;height:auto;'><img src='" + marqueurs[index].img + "' width='200px' height='auto'>" + marqueurs[index].name + "<div>"
-        );
-      },
       backgroundColor: "#71C5EA",
-      regionStyle: {
-        initial: {
-          fill: 'white',
-          "fill-opacity": 1,
-          stroke: 'none',
-          "stroke-width": 0,
-          "stroke-opacity": 1
-        },
-        hover: {
-          "fill-opacity": 0.8,
-          cursor: 'pointer',
-          fill: "#ffa500"
-        },
-        selected: {
-          fill: 'yellow'
-        },
-        selectedHover: {}
-      },
-      regionLabelStyle: {
-        initial: {
-          'font-family': 'Verdana',
-          'font-size': '12',
-          'font-weight': 'bold',
-          cursor: 'default',
-          fill: 'black'
-        },
-        hover: {
-          cursor: 'pointer'
-        }
-      },
       series: {
         regions: [{
           values: payes,
           attribute: 'fill'
         }]
       },
-
+      markers: marqueurs,
+      onMarkerTipShow: function(event, label, index) {
+        console.log(marqueurs[index]);
+        label.html(
+          "<div class='card' >" +
+          "<img style='width:18rem;' src='" + marqueurs[index].img + "' class='card-img-top'>" +
+          "<div class='card-body'>" +
+          "<h5 style='color:black' class='card-title'>" + marqueurs[index].name + "</h5>" +
+          "<p class='card-text'>" +
+          "<ul class='list-group list-group-flush'>" +
+          "<li style='color:black' class='list-group-item'>Climat : " + marqueurs[index].climat + "</li>" +
+          "<li style='color:black' class='list-group-item'>Activité : " + marqueurs[index].activite + "</li>" +
+          "<li style='color:black' class='list-group-item'>Budget : " + marqueurs[index].budget + " €</li>" +
+          "</ul>" +
+          "</p>" +
+          "<a href='#' class='btn btn-primary'>Go somewhere</a>" +
+          "</div>" +
+          "</div>"
+        );
+      }
     });
-    map.series.regions[0].setValues(myCustomColors);
   });
 </script>
 
