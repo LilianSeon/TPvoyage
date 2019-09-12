@@ -122,7 +122,6 @@ function modif($id, $budget){
     
 }
 
-<<<<<<< HEAD
 function add($codePays, $ville, $long, $lat, $activite){
     $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', ''); 
     $pdo->exec('SET NAMES utf8');
@@ -148,32 +147,6 @@ function add($codePays, $ville, $long, $lat, $activite){
       </div></div>';
     }
 
-=======
-function supprimer($id, $pdo)
-{
-    $query = "DELETE FROM corrvpb WHERE IDVille = ".$id;
-    $req[] = $pdo->query($query);
-    var_dump($req);
-    $query = "DELETE FROM corrva WHERE IDVille = ".$id;
-    $req[] = $pdo->query($query);
-    var_dump($req);
-    foreach($req as $result)
-    {
-        if(!$result)
-        {
-            $req = false;
-        }
-    }
-    if(!$req)
-    {
-        return false;
-    }
-    else
-    {
-        $query = "DELETE FROM villes WHERE IDVille = ".$id;
-        return $req = $pdo->query($query);
-    }
->>>>>>> 8659b63b3d7771c550c92ed623335db456cf1c6f
 }
 
 ?>

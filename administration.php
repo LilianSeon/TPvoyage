@@ -43,7 +43,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', '');
  </div>
 </nav><br>
 <?php
-$pdo->exec('SET NAMES utf8');$sql = "SELECT villes.nom, Climat, typeActivite, TypeBudget, villes.Code, pays.Nom, villes.IDVille
+$pdo->exec('SET NAMES utf8');
+$sql = "SELECT villes.nom, Climat, typeActivite, TypeBudget, villes.Code, pays.Nom, villes.IDVille
 FROM pays
 INNER JOIN CorrPPC ON CorrPPC.Code = pays.Code
 INNER JOIN villes ON villes.Code = pays.code
@@ -53,7 +54,6 @@ INNER JOIN activites ON corrva.IDActivite = activites.IDActivite
 ORDER BY Code";    
 $req = $pdo->query($sql);
 echo '<div class="row">';
-<<<<<<< HEAD
    while($row = $req->fetch()){
        echo '<form method="POST" action="modifier.php">
                <div class="card mr-5" style="width: 18rem;">
@@ -75,46 +75,3 @@ echo '<div class="row">';
                </form>';
    }?>
    </div>
-=======
-while($row = $req->fetch()){
-    echo '<form method="POST" action="modifier.php">
-            <div class="card mr-5" style="width: 18rem;">
-            <img src="img/'.$row["Nom"].'" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">'.$row["nom"].'</h5>
-                <p class="card-text">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">'.$row["Climat"].'</li>
-                        <li class="list-group-item">'.$row["typeActivite"].'</li>
-                        <li class="list-group-item">'.$row["TypeBudget"].'</li>
-                    </ul>
-                </p>
-                 <button type="submit" name="modif" class="btn btn-primary">Modifier les informations</button>
-                 <button type="button" onclick="document.location = \'/TPVoyage/administration.php/?idSuppr='.$row["IDVille"].'\'" name="delete" class="btn btn-primary">Supprimer la ville</button>
-            </div>
-            </div>
-            <input name="IDVille" type="hidden" value="'.$row["IDVille"].'">
-            <input name="nom" type="hidden" value="'.$row["nom"].'">
-            </form>';
-}
-   
-   
-if(isset($_GET['idSuppr']) && $_GET['idSuppr'] != '')
-{
-    $result = supprimer($_GET['idSuppr'], $pdo);
-    var_dump($result);
-    if($result)
-    {
-        echo '<script>document.location = "/TPVoyage/administration.php"</script>';
-    }
-    else
-    {
-        echo '<script>$("#divAlertSuppr").show();</script>';
-    }
-}
-
-   
-?>
-   </div>
-   </body>
->>>>>>> 8659b63b3d7771c550c92ed623335db456cf1c6f
