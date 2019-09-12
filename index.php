@@ -82,6 +82,7 @@ require 'function.php';
       </div>
       <div class="col-md-3 mt-5">
         <button name="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button name="Administration" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="document.location.href = 'administration.php'">Administration</button>
       </div>
     </div>
   </form>
