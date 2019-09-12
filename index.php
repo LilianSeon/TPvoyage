@@ -135,7 +135,7 @@ if (isset($_GET['search'])) {
       onMarkerTipShow: function(event, label, index) {
         console.log(marqueurs[index]);
         label.html(
-          "<div class='card' >" +
+          "<div class='card border-light'>" +
           "<img style='width:18rem;' src='" + marqueurs[index].img + "' class='card-img-top'>" +
           "<div class='card-body'>" +
           "<h5 style='color:black' class='card-title'>" + marqueurs[index].name + "</h5>" +
@@ -154,5 +154,10 @@ if (isset($_GET['search'])) {
     });
   });
 </script>
-
+<!-- Footer -->
+<footer class="page-footer font-small lightblue">
+  <div class="footer-copyright text-center py-3">© 2019 Hitema : TPVoyage<br>
+    Groupe : Afef, Khadija, Léa, Abdel, Damien et Lilian
+  </div>
+</footer>
 </html>
