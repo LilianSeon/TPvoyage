@@ -122,4 +122,57 @@ function modif($id, $budget){
     
 }
 
+function add($codePays, $ville, $long, $lat, $activite){
+    $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', ''); 
+    $pdo->exec('SET NAMES utf8');
+
+    $sql = "INSERT INTO Villes (nom, `code`, `long`, `lat`) VALUES ('$ville','$codePays', '$long', '$lat');";
+
+    $req = $pdo->query($sql);
+
+    $sql2 = "SELECT MAX(idville) FROM Villes;";
+
+    $req2 = $pdo->query($sql2);
+
+    while($row = $req2->fetch()){
+        var_dump($row);
+        $return = $row["MAX(idville)"];
+    }
+
+    $sql3 = "INSERT INTO CorrVA (idactivite, idville) VALUES ('$activite', '$return');";
+
+    if($req){
+        echo '<div class="row"><div class="alert alert-success col-md-3 offset-md-4" role="alert">
+        <div class="">Ville ajouté !</div>
+      </div></div>';
+    }
+
+}
+
+function supprimer($id, $pdo)
+{
+    $query = "DELETE FROM corrvpb WHERE IDVille = ".$id;
+    $req[] = $pdo->query($query);
+    var_dump($req);
+    $query = "DELETE FROM corrva WHERE IDVille = ".$id;
+    $req[] = $pdo->query($query);
+    var_dump($req);
+    foreach($req as $result)
+    {
+        if(!$result)
+        {
+            $req = false;
+        }
+    }
+    if(!$req)
+    {
+        return false;
+    }
+    else
+    {
+        $query = "DELETE FROM villes WHERE IDVille = ".$id;
+        return $req = $pdo->query($query);
+    }
+}
+
 ?>
