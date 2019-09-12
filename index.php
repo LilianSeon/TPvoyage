@@ -14,6 +14,8 @@ require 'function.php';
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <img src="./img/lo.png" style=" max-width: 95px;
+    max-height: 168px; margin: 0 11px 0px 0px;" />
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

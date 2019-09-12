@@ -4,7 +4,7 @@ function recherche($budget, $climat, $activite){
     $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', ''); 
     $pdo->exec('SET NAMES utf8');
 
-    $sql = "SELECT villes.nom, Climat, typeActivite, TypeBudget, villes.Code, pays.code as code_pays, pays.Nom
+    $sql = "SELECT villes.nom, villes.long, villes.lat, Climat, typeActivite, TypeBudget, villes.Code, pays.code as code_pays, pays.Nom
     FROM pays
     INNER JOIN CorrPPC ON CorrPPC.Code = pays.Code
     INNER JOIN villes ON villes.Code = pays.code
@@ -34,6 +34,7 @@ function recherche($budget, $climat, $activite){
         foreach($result as $row)
         {
             $marqueur .= '{
+                "latLng": [parseFloat('.str_replace(',', '.', $row["lat"]).'), parseFloat('.str_replace(',', '.', $row["long"]).')],
                 "name": "'.$row["nom"].'",
                 "img": "img/'.$row["Nom"].'",
                 "climat": "'.$row["Climat"].'",
