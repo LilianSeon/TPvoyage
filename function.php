@@ -98,4 +98,28 @@ function recherche($budget, $climat, $activite){
                         
 }
 
+function modif($id, $budget){
+    $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', ''); 
+    $pdo->exec('SET NAMES utf8');
+
+    $sql = "UPDATE corrvpb
+    SET corrvpb.Budget = $budget
+    WHERE IDVille = $id;UPDATE corrvpb
+    SET TypeBudget =
+    CASE
+        WHEN budget <= 300 THEN 'Entre 0€ et 300€'
+       WHEN (Budget > 300 AND Budget <= 500) THEN 'Entre 300€ et 500€'
+       WHEN Budget > 500 THEN 'Plus de 500€'
+    END
+    WHERE IDVile = $id";
+
+    $req = $pdo->query($sql);
+    if($req){
+        echo '<div class="row"><div class="alert alert-success col-md-3 offset-md-4" role="alert">
+        <div class="">Budget modifié !</div>
+      </div></div>';
+    }
+    
+}
+
 ?>
