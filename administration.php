@@ -16,7 +16,7 @@
        <a class="nav-link" href="index.php">Retour <span class="sr-only">(current)</span></a>
      </li>
      <li class="nav-item">
-       <a class="nav-link" href="#administration.php">Link</a>
+       <a class="nav-link" href="addVille.php">Ajouter un ville</a>
      </li>
      <li class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +60,6 @@ echo '<div class="row">';
                            <li class="list-group-item">'.$row["TypeBudget"].'</li>
                        </ul>
                    </p>
-                   <a href="#" class="btn btn-primary">Go somewhere</a><br><br>
                    <button type="submit name="modif" class="btn btn-primary">Modifier les informations</button>
                </div>
                </div>
