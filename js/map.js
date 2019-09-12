@@ -16,7 +16,7 @@ var marqueurs = [];
           "activite": villes.activite,
           "budget": villes.budget
         });
-        payes[keys] = colors[Math.ceil(Math.random() * 6)];
+        payes[keys] = colors[Math.ceil(Math.random() * 8)];
       }
 
     }

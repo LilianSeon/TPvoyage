@@ -12,6 +12,7 @@ require 'function.php';
   <script src="js/JVectorMap/jquery-jvectormap-2.0.3.min.js"></script>
   <script src="js/JVectorMap/jquery-jvectormap-world-mill.js"></script>
 </head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,6 +83,7 @@ require 'function.php';
       </div>
       <div class="col-md-3 mt-5">
         <button name="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button name="Administration" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="document.location.href = 'administration.php'">Administration</button>
       </div>
     </div>
   </form>
@@ -97,7 +99,10 @@ else
     echo '<script type="text/javascript" src="js/map.js"></script>';
 }
 ?>
-<script>
-    //jQuery("#alert").hide();
-</script>
+</body>
+<footer class="page-footer font-small lightblue">
+  <div class="footer-copyright text-center py-3">© 2019 Hitema : TPVoyage<br>
+    Groupe : Afef, Khadija, Léa, Abdel, Damien et Lilian
+  </div>
+</footer>
 </html>

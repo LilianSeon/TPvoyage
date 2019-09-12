@@ -4,7 +4,7 @@ function recherche($budget, $climat, $activite){
     $pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', ''); 
     $pdo->exec('SET NAMES utf8');
 
-    $sql = "SELECT villes.nom, Climat, typeActivite, TypeBudget, villes.Code, pays.Nom
+    $sql = "SELECT villes.nom, Climat, typeActivite, TypeBudget, villes.Code, pays.code as code_pays, pays.Nom
     FROM pays
     INNER JOIN CorrPPC ON CorrPPC.Code = pays.Code
     INNER JOIN villes ON villes.Code = pays.code
@@ -20,13 +20,17 @@ function recherche($budget, $climat, $activite){
         echo '<script>$("#divAlert").show();</script>';
         echo '<script>
                 $(function(){
-                  $("#world-map").vectorMap({map: "world_mill"});
+                  $("#world-map").vectorMap({
+                        map: "world_mill",
+                        backgroundColor: "#71C5EA",
+                    });
                 })
             </script>';
     }
     else
     {
         $marqueur = '[';
+        $colors = ['#24345A', '#279DE1', '#26CDCB', '#FF90AA', '#FED566', '#844076', '#FFCF4F', '#344B5E'];
         foreach($result as $row)
         {
             $marqueur .= '{
@@ -37,7 +41,17 @@ function recherche($budget, $climat, $activite){
                 "budget": "'.$row["TypeBudget"].'",
                 "code": "'.$row["Code"].'",
               },';
+            if(!isset($pays[$row["code_pays"]]))
+            {
+                $pays[$row["code_pays"]] = $colors[rand(0 ,7)];
+            }
         }
+        $payes = "{";
+        foreach($pays as $key=>$value)
+        {
+            $payes .= "'".$key."':'".$value."',";
+        }
+        $payes .= "}";
         $marqueur .= ']';
         echo "
         <script>
@@ -49,6 +63,13 @@ function recherche($budget, $climat, $activite){
                 fill: '#F8E23B',
                 stroke: '#383f47'
               }
+            },
+            backgroundColor: '#71C5EA',
+            series: {
+              regions: [{
+                values: ".$payes.",
+                attribute: 'fill'
+              }]
             },
             markers: marqueurs_ville,
             onMarkerTipShow: function(event, label, index){
