@@ -122,4 +122,30 @@ function modif($id, $budget){
     
 }
 
+function supprimer($id, $pdo)
+{
+    $query = "DELETE FROM corrvpb WHERE IDVille = ".$id;
+    $req[] = $pdo->query($query);
+    var_dump($req);
+    $query = "DELETE FROM corrva WHERE IDVille = ".$id;
+    $req[] = $pdo->query($query);
+    var_dump($req);
+    foreach($req as $result)
+    {
+        if(!$result)
+        {
+            $req = false;
+        }
+    }
+    if(!$req)
+    {
+        return false;
+    }
+    else
+    {
+        $query = "DELETE FROM villes WHERE IDVille = ".$id;
+        return $req = $pdo->query($query);
+    }
+}
+
 ?>

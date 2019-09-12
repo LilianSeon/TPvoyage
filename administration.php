@@ -1,3 +1,8 @@
+<?php 
+require 'connect.php';
+require 'function.php';
+$pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', '');
+?>
 <head>
  <meta charset="UTF-8">
  <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
@@ -6,6 +11,8 @@
  <script src="js/JVectorMap/jquery-jvectormap-2.0.3.min.js"></script>
  <script src="js/JVectorMap/jquery-jvectormap-world-mill.js"></script>
 </head>
+<body>
+<div class="alert alert-danger" id="divAlertSuppr" style="display: none" role="alert">Erreur lors de la suppression</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
  <a class="navbar-brand" href="index.php">Accueil</a>
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,36 +43,54 @@
  </div>
 </nav><br>
 <?php
-require 'connect.php';
-require 'function.php';$pdo = new PDO('mysql:host=localhost;dbname=tpvoyage', 'root', '');
 $pdo->exec('SET NAMES utf8');$sql = "SELECT villes.nom, Climat, typeActivite, TypeBudget, villes.Code, pays.Nom, villes.IDVille
 FROM pays
 INNER JOIN CorrPPC ON CorrPPC.Code = pays.Code
 INNER JOIN villes ON villes.Code = pays.code
 INNER JOIN corrvpb ON corrvpb.IDVille = villes.IDVille
 INNER JOIN corrva ON CorrVA.IDVille = villes.IDVille
-INNER JOIN activites ON corrva.IDActivite = activites.IDActivite";    
+INNER JOIN activites ON corrva.IDActivite = activites.IDActivite
+ORDER BY Code";    
 $req = $pdo->query($sql);
 echo '<div class="row">';
-   while($row = $req->fetch()){
-       echo '<form method="POST" action="modifier.php">
-               <div class="card mr-5" style="width: 18rem;">
-               <img src="img/'.$row["Nom"].'" class="card-img-top" alt="...">
-               <div class="card-body">
-                   <h5 class="card-title">'.$row["nom"].'</h5>
-                   <p class="card-text">
-                       <ul class="list-group list-group-flush">
-                           <li class="list-group-item">'.$row["Climat"].'</li>
-                           <li class="list-group-item">'.$row["typeActivite"].'</li>
-                           <li class="list-group-item">'.$row["TypeBudget"].'</li>
-                       </ul>
-                   </p>
-                   <a href="#" class="btn btn-primary">Go somewhere</a><br><br>
-                   <button type="submit name="modif" class="btn btn-primary">Modifier les informations</button>
-               </div>
-               </div>
-               <input name="IDVille" type="hidden" value="'.$row["IDVille"].'">
-               <input name="nom" type="hidden" value="'.$row["nom"].'">
-               </form>';
-   }?>
+while($row = $req->fetch()){
+    echo '<form method="POST" action="modifier.php">
+            <div class="card mr-5" style="width: 18rem;">
+            <img src="img/'.$row["Nom"].'" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">'.$row["nom"].'</h5>
+                <p class="card-text">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">'.$row["Climat"].'</li>
+                        <li class="list-group-item">'.$row["typeActivite"].'</li>
+                        <li class="list-group-item">'.$row["TypeBudget"].'</li>
+                    </ul>
+                </p>
+                 <button type="submit" name="modif" class="btn btn-primary">Modifier les informations</button>
+                 <button type="button" onclick="document.location = \'/TPVoyage/administration.php/?idSuppr='.$row["IDVille"].'\'" name="delete" class="btn btn-primary">Supprimer la ville</button>
+            </div>
+            </div>
+            <input name="IDVille" type="hidden" value="'.$row["IDVille"].'">
+            <input name="nom" type="hidden" value="'.$row["nom"].'">
+            </form>';
+}
+   
+   
+if(isset($_GET['idSuppr']) && $_GET['idSuppr'] != '')
+{
+    $result = supprimer($_GET['idSuppr'], $pdo);
+    var_dump($result);
+    if($result)
+    {
+        echo '<script>document.location = "/TPVoyage/administration.php"</script>';
+    }
+    else
+    {
+        echo '<script>$("#divAlertSuppr").show();</script>';
+    }
+}
+
+   
+?>
    </div>
+   </body>
